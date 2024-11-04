@@ -1,0 +1,31 @@
+import pygame
+from pygame.draw import *
+
+pygame.init()
+
+FPS = 30
+screen = pygame.display.set_mode((400, 300))
+
+BLUE = (0, 0, 255)
+
+pygame.display.update()
+clock = pygame.time.Clock()
+finished = False
+
+while not finished:
+    clock.tick(FPS)
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            finished = True
+
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            left = pygame.mouse.get_pressed()
+            pos = pygame.mouse.get_pos()
+            if left[0] == 0:
+                circle(screen, BLUE, pos, 30)
+                # pygame.display.update()
+                #elif left[0] == 2:
+                rect(screen, BLUE, (pos[0], pos[1], 30, 30))
+                pygame.display.update()
+
+pygame.quit()
