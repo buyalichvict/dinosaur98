@@ -1,0 +1,28 @@
+import pygame
+from pygame.draw import *
+
+pygame.init()
+
+BLUE = (0, 0, 255)
+
+FPS = 30
+screen = pygame.display.set_mode((400, 300))
+pygame.display.update()
+clock = pygame.time.Clock()
+finished = False
+
+while not finished:
+    pygame.tick(FPS)
+    for event in pygame.event.get():
+        if pygame.event.type == pygame.QUIT:
+            finished = True
+        elif event.type == MOUSEBUTTONDOWN:
+            if event.button == 1:
+                cirle(screen, BLUE, event.pos, 30)
+                pygame.display.update()
+            if event.button == 3:
+                polygon(screen, BLUE,
+                        [event.pos, event.pos[0] + 50, event.pos[1] + 50])
+                pygame.display.update()
+
+    pygame.quit()
